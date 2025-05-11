@@ -30,8 +30,6 @@ app.use('/api/', limiter);
 app.use((req, res, next) => {
   // In production, replace with your actual domain
   const allowedOrigins = [
-    'http://localhost:3000', 
-    'http://localhost:5000',
     'https://hw-invest.web.app',
     'https://hw-invest.firebaseapp.com'
   ];
@@ -45,17 +43,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Optional: Simple API key middleware for the proxy
-// Uncomment and set PROXY_API_KEY in your .env file to enable
-/*
-app.use((req, res, next) => {
-  const apiKey = req.headers['x-api-key'];
-  if (process.env.PROXY_API_KEY && (!apiKey || apiKey !== process.env.PROXY_API_KEY)) {
-    return res.status(403).json({ error: 'Unauthorized' });
-  }
-  next();
-});
-*/
 
 // Function to fetch data from Finnhub
 async function fetchStockData(symbol) {
